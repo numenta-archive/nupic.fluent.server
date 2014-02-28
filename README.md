@@ -12,6 +12,10 @@ Install other requirements:
 
     pip install -r requirements.txt
 
+If your Python version is < 2.7,
+
+    pip install ordereddict
+
 ## Usage
 
 Run:
