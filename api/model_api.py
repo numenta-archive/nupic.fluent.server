@@ -35,6 +35,7 @@ urls = (
   r"/([-\w]*)/reset", "Reset"
 )
 
+ENABLE_CACHING = False
 modelCache = LimitedSizeDict(size_limit=25)
 
 
@@ -92,7 +93,9 @@ def getModel(uid):
   if model.hasCheckpoint():
     model.load()
 
-  modelCache[uid] = model
+  if ENABLE_CACHING:
+    modelCache[uid] = model
+
   return model
 
 
