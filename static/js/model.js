@@ -11,25 +11,39 @@ $(window).resize(function() {
 
 $("#input").focus();
 
-$("#input").keydown(function(e) {
-	if (e.which == 13) {  // enter
-		e.preventDefault();
-	}
-	else if (e.which == 32 || e.which == 190) {  // space or period
-		val = $(this).val();
-		if (val.length) feed(val);
+$("#input").on("input", function(e) {
+	var value = $(this).val();
 
-		if (e.which == 190) {  // period
-			reset();
+	if (value.indexOf(" ") != -1 || value.indexOf(".") != -1) {
+		var string = value.trim();
+		var sequences = string.split(".");
+
+		for (var i = 0; i < sequences.length; i++) {
+			var sequence = sequences[i].trim();
+			var terms = sequence.split(" ");
+
+			for (var j = 0; j < terms.length; j++) {
+				var term = terms[j];
+
+				if (term.length) {
+					feed(term);
+				}
+			}
+
+			if (i < sequences.length - 1) {
+				console.log(".");
+				reset();
+			}
 		}
 
 		$(this).val("");
-		e.preventDefault();
-
 		positionBottom();
 		scrollToBottom();
 	}
 });
+
+// Disable form submission
+$("#input-form").submit(function() {return false;});
 
 /* API functions */
 
