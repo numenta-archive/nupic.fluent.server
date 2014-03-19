@@ -6,7 +6,7 @@ A server-based API for interacting with [Fluent](https://github.com/chetan51/nup
 
 Requirements:
 
-- [Fluent](https://github.com/chetan51/nupic.fluent)
+- [Fluent](https://github.com/nupic/nupic.fluent)
 
 Install other requirements:
 
