@@ -1,12 +1,12 @@
 # Fluent Server
 
-A server-based API for interacting with [Fluent](https://github.com/chetan51/nupic.fluent).
+A server-based API for interacting with [Fluent](https://github.com/numenta/nupic.fluent).
 
 ## Installation
 
 Requirements:
 
-- [Fluent](https://github.com/nupic/nupic.fluent)
+- [Fluent](https://github.com/numenta/nupic.fluent)
 
 Install other requirements:
 
