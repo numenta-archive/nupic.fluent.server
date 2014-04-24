@@ -4,39 +4,6 @@
 	box-sizing: border-box;
 }
 
-.main-content {
-	top: 0;
-	bottom: 120px;
-	position: fixed;
-}
-
-.fixed-bottom {
-	bottom: 0;
-	position: fixed;
-}
-
-.stick-bottom {
-	top: auto;
-	bottom: 0;
-	position: absolute;
-}
-
-.full-width {
-	width: 100%;
-}
-
-.full-height {
-	height: 100%;
-}
-
-.text-centered {
-	text-align: center;
-}
-
-.scrollable-y {
-	overflow-y: auto;
-}
-
 .white-background {
 	background: white;
 }
@@ -59,5 +26,149 @@ li.term, li.prediction {
 
 .prediction {
 	text-align: left;
-	color: green;
+	color: #19b4ff;
+}
+
+input[type="radio"] + label {
+	margin-right:0;
+	margin-left:0;
+	padding:0 10px;
+}
+
+body {
+	min-height:100%;
+}
+
+.wrapper {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:100px 0 200px 0;
+}
+
+.header {
+	margin-top:-100px;
+	height:100px;
+	text-align:center;
+	background:#d7dadb;
+	position:relative;
+	z-index:20;
+}
+
+.header > .row {
+	position:relative;
+	z-index:11;
+	padding-top:10px;
+}
+
+.header .logo {
+	font-size:50px;
+	font-family: 'Sonsie One', 'cursive';
+	color:#f5f5f5;
+	text-shadow:1px 1px 2px rgba(0,0,0,0.25);
+	display:block;
+}
+
+.header .logo:hover {
+	color:#fff;
+}
+
+.footer {
+	margin-bottom:-200px;
+	height:200px;
+	padding-top:15px;
+	background-color:#f5f5f5;
+}
+
+.history {
+	height:100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+	position:relative;
+	z-index:1;
+}
+
+#inner-history-wrapper {
+	position:relative;
+}
+
+#history {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding-top:20px;
+}
+
+#history hr:first-child {
+	display:none;
+}
+
+#history ul:nth-of-type(1) {
+	margin-top:20px;
+}
+
+/* used for measureScrollBarWidth() in model.js */
+.scrollbar-measure {
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	top: -9999px;
+}
+
+/* drop shadow effect. thanks to: http://www.prowebdesign.ro/round-brush-like-responsive-drop-shadows-with-css3-and-no-images/ */
+
+.shadow {
+	background:#d7dadb;
+  	position:absolute;
+  	height:100px;
+  	width:100%;
+  	bottom:0;
+	-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shadow:after {
+	content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 40px rgba(0,0,0,0.3);
+    		box-shadow:0 0 40px rgba(0,0,0,0.3);
+    bottom:0px;
+	width:80%;
+	height:50%;
+    -moz-border-radius:100%;
+    border-radius:100%;
+	left:10%;
+	right:10%;
+}
+
+.switch-label {
+	line-height:2em;
+	padding-right:10px;
+	color:#999;
+}
+
+.switch-container {
+	text-align:right;
+	
+}
+
+.switch-container .switch {
+	min-width:70px;
+	display:inline-block;
+}
+
+.switch label[for="learningOn"] {
+	color:#fff;
+	margin-left:-2px;
+}
+
+
+div.switch span:last-child {
+    border-color: #ddd;
+    -webkit-box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 1000px #19b4ff, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
+    box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 980px #19b4ff, -2px 0 10px 0 rgba(0, 0, 0, 0.07), -1000px 0 0 1000px whitesmoke;
 }

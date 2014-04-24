@@ -1,13 +1,49 @@
 /* Main */
 
-reset();
+// jQuery plugin for checking to see if scrollbar is present.
+// Courtesy of Reigel: http://stackoverflow.com/questions/4814398/how-can-i-check-if-a-scrollbar-is-visible
+(function($) {
+    $.fn.hasScrollBar = function() {
+        return this.get(0).scrollHeight > this.height();
+    }
+})(jQuery);
 
-positionBottom();
+reset();
+resizeHistory();
+checkScroll();
 
 $(window).resize(function() {
-	positionBottom();
-	scrollToBottom();
+	resizeHistory();
+	checkScroll();
 });
+
+function checkScroll() {
+	var width = 0;
+	if ($("#history-container").hasScrollBar()) {
+		width = measureScrollBarWidth();
+	}
+	$(".header .row.headings").css("padding-right",width);
+}
+
+function measureScrollBarWidth() {
+	var scrollDiv = document.createElement("div");
+	scrollDiv.className = "scrollbar-measure";
+	document.body.appendChild(scrollDiv);
+
+	// Get the scrollbar width
+	var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+	$(".header .row.headings").css("padding-right",scrollbarWidth);
+
+	// Delete the DIV 
+	document.body.removeChild(scrollDiv);
+	return scrollbarWidth;
+}
+
+var learning = true;
+
+function toggleLearning() {
+	learning = !learning;
+}
 
 $("#input").focus();
 
@@ -37,8 +73,8 @@ $("#input").on("input", function(e) {
 		}
 
 		$(this).val("");
-		positionBottom();
-		scrollToBottom();
+		resizeHistory();
+		checkScroll();
 	}
 });
 
@@ -54,7 +90,8 @@ function feed(term) {
 	var row = appendHistoryRow(term);
 
 	var url = "/_models/" + window.MODEL_ID + "/feed/" + term;
-	$.postq("api", url, function(data) {
+	var payload = {"learning" : learning};
+	$.postq("api", url, payload, function(data) {
 		updateHistoryRow(row, data[0]);
 	});
 }
@@ -89,18 +126,9 @@ function updateHistoryRow(row, prediction) {
 	row.children(".prediction").text(prediction.term.string);
 }
 
-function positionBottom() {
-	mainContent = $("#main-content");
-
-	position = mainContent.parent().height() -
-	           mainContent.height() -
-	           20;  // padding
-	position = Math.max(0, position);
-
-	mainContent.offset({"top": position});
+function resizeHistory() {
+	$("#inner-history-wrapper").height($("#history").height());
+	$("#history-container").scrollTop($("#history-container").get(0).scrollHeight);
 }
 
-function scrollToBottom() {
-	mainWindow = $("#main-window");
-	mainWindow.scrollTop(mainWindow.prop("scrollHeight"));
-}
+// initialize the page:

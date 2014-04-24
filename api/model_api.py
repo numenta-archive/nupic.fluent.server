@@ -28,8 +28,6 @@ from fluent.term import Term
 
 from utils.limited_size_dict import LimitedSizeDict
 
-
-
 urls = (
   r"/([-\w]*)/feed/([-\w]*)", "Feed",
   r"/([-\w]*)/reset", "Reset"
@@ -54,8 +52,8 @@ class Feed:
   def POST(self, uid, string):
     model = getModel(uid)
     term = Term().createFromString(string)
-
-    prediction = model.feedTerm(term)
+    learning = False if web.input().learning == "false" else True
+    prediction = model.feedTerm(term,learning)
     model.save()
 
     web.header('Content-Type', 'application/json')

@@ -1,33 +1,62 @@
 $def with (modelId)
 
+<!-- header -->
 <link rel="stylesheet" href="/static/css/model.css" />
+<div id="main-window" class="header">
+  <div class="row large-12 logo-container">
+    <a class="logo" href="/">Fluent</a>
+  </div>
+  <div class="row small-12 headings">
+      <ul class="small-block-grid-2">
+        <li class="term heading">Term</term></li>
+        <li class="prediction heading">Prediction</term></li>
+      </ul>
+  </div>
+  <div class="shadow"></div>
+</div>
 
-<div id="main-window" class="full-width main-content scrollable-y">
-  <div id="main-content" class="row small-4 small-centered">
-    <h2 class="text-centered">Fluent</h2>
-
-    <ul class="history-item small-block-grid-2">
-      <li class="term heading">Term</term></li>
-      <li class="prediction heading">Prediction</term></li>
-    </ul>
-
-    <div id="history">
+<!-- scrollable history -->
+<div class="row history" id="history-container">
+  <div class="large-12 small-centered columns" id="history-wrapper">
+    <div id="inner-history-wrapper">
+      <div id="history"></div>
     </div>
   </div>
 </div>
 
-<div id="input-container" class="fixed-bottom full-width white-background">
-  <form id="input-form">
-    <div class="row">
-      <div class="large-4 small-centered columns">
-        <label class="text-centered">
-          <input id="input" type="text" placeholder="Type here..."/>
-            Type <code>Space</code> to separate terms,<br>
-            and <code>Period</code> to separate sequences.
-        </label>
+<!-- input form footer -->
+<div id="input-container" class="white-background footer">
+  <div class="row">
+    <div class="large-8 small-centered columns">
+      <form id="input-form">
+        <input id="input" type="text" placeholder="Type here..."/>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-8 small-centered columns">
+      <div class="row">
+        <div class="large-7 columns">
+          <label class="text-centered">
+              Type <code>Space</code> to separate terms,<br>
+              and <code>Period</code> to separate sequences.
+          </label>
+        </div>
+        <div class="large-5 columns">
+          <div class="switch-container">
+            <span class="switch-label">Learning:</span>
+            <div class="switch right">
+              <input id="learningOff" name="learning" type="radio" onclick="toggleLearning()">
+              <label for="learningOff">Off</label>
+              <input id="learningOn" name="learning" type="radio" checked onclick="toggleLearning()">
+              <label for="learningOn">On</label>
+              <span></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </form>
+  </div>
 </div>
 
 <script>
