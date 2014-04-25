@@ -7,6 +7,9 @@ $def with (content)
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fluent - Powered by NuPIC and CEPT</title>
     <link rel="stylesheet" href="/static/css/foundation.css" />
+    <link href='http://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
     <script src="/static/js/vendor/modernizr.js"></script>
   </head>
   <body>
@@ -16,7 +19,8 @@ $def with (content)
     <script>
       $$(document).foundation();
     </script>
-
+    <div class="wrapper">
     $:content
+    </div>
   </body>
 </html>
