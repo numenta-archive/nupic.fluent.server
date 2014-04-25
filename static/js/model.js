@@ -39,12 +39,6 @@ function measureScrollBarWidth() {
 	return scrollbarWidth;
 }
 
-var learning = true;
-
-function toggleLearning() {
-	learning = !learning;
-}
-
 $("#input").focus();
 
 $("#input").on("input", function(e) {
@@ -90,6 +84,7 @@ function feed(term) {
 	var row = appendHistoryRow(term);
 
 	var url = "/_models/" + window.MODEL_ID + "/feed/" + term;
+	var learning = $("input[type='radio'][name='learning']:checked").val();
 	var payload = {"learning" : learning};
 	$.postq("api", url, payload, function(data) {
 		updateHistoryRow(row, data[0]);

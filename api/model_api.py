@@ -53,7 +53,7 @@ class Feed:
     model = getModel(uid)
     term = Term().createFromString(string)
     learning = False if web.input().learning == "false" else True
-    prediction = model.feedTerm(term,learning)
+    prediction = model.feedTerm(term, learning)
     model.save()
 
     web.header('Content-Type', 'application/json')
