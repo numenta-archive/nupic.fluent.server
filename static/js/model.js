@@ -61,7 +61,6 @@ $("#input").on("input", function(e) {
 			}
 
 			if (i < sequences.length - 1) {
-				console.log(".");
 				reset();
 			}
 		}
@@ -87,7 +86,7 @@ function feed(term) {
 	var learning = $("input[type='radio'][name='learning']:checked").val();
 	var payload = {"learning" : learning};
 	$.postq("api", url, payload, function(data) {
-		updateHistoryRow(row, data[0]);
+		updateHistoryRow(row, data);
 	});
 }
 
@@ -117,8 +116,18 @@ function appendHistoryRowEmpty() {
 	return row;
 }
 
-function updateHistoryRow(row, prediction) {
-	row.children(".prediction").text(prediction.term.string);
+function updateHistoryRow(row, data) {
+    var prediction = row.children(".prediction"),
+        html;
+
+    html = "<ul class='prediction'>";
+    for (i in data) {
+        if (i >= 4) break;
+        html += "<li class='prediction-item'>" + data[i]['term']['string'] + "</li>";
+    }
+    html += "</ul>";
+
+    prediction.html(html);
 }
 
 function resizeHistory() {

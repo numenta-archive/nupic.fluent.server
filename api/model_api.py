@@ -56,13 +56,15 @@ class Feed:
     prediction = model.feedTerm(term, learning)
     model.save()
 
+    closestStrings = prediction.closestStrings()
+
     web.header('Content-Type', 'application/json')
     return json.dumps([{
       "type": "term",
       "term": {
-        "string": prediction.closestString()
+        "string": string
       }
-    }])
+    } for string in closestStrings])
 
 
 
